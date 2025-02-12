@@ -1,4 +1,4 @@
-import {initializeBoard, verifDamier} from "./dames";
+import {initializeBoard, verifDamier, verifReinesAttaqueUnique} from "./dames";
 
 describe('nQueens', () => {
     it.each([
@@ -282,7 +282,43 @@ describe('nQueens', () => {
             expect(verifDamier(plateauDeJeu, ligne, colonne, taille)).toBe(attendu);
         }
     );
-
-
-
 })
+describe('Configuration des Reines à Attaque Unique', () => {
+    it.each([
+        {
+            n: 4,
+            plateau: [
+                ["O", "O", "O", "#"],
+                ["O", "O", "O", "O"],
+                ["#", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            attendu: false,
+        },
+        {
+            n: 4,
+            plateau: [
+                ["O", "O", "O", "O"],
+                ["O", "#", "O", "O"],
+                ["O", "O", "#", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            attendu: true,
+        },
+        {
+            n: 4,
+            plateau: [
+                ["O", "#", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["#", "O", "O", "O"],
+            ],
+            attendu: false,
+        },
+    ])(
+        'Vérifie si les reines s\'attaquent dans une configuration de taille $n',
+        ({ n, plateau, attendu }) => {
+            expect(verifReinesAttaqueUnique(plateau, n)).toBe(attendu);
+        }
+    );
+});
