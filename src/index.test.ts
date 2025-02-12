@@ -149,7 +149,73 @@ describe('nQueens', () => {
             expect(result).toBe(attendu);
         },
     );
-
+    it.each([
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 1,
+            colonne: 1,
+            attendu: true,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "#", "O", "O"],
+                ["#", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 1,
+            colonne: 1,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["#", "O", "#", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 2,
+            colonne: 2,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "#", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 1,
+            colonne: 3,
+            attendu: true,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "#", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["#", "O", "O", "O"],
+            ],
+            ligne: 3,
+            colonne: 3,
+            attendu: false,
+        },
+    ])(
+        'Vérifie si une reine peut être placée à la position ($ligne, $colonne) sur un échiquier de taille $taille avec les diagonales',
+        ({ taille, plateauDeJeu, ligne, colonne, attendu }) => {
+            expect(verifDamier(plateauDeJeu, ligne, colonne, taille)).toBe(attendu);
+        }
+    );
 
 
 
