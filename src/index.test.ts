@@ -1,4 +1,4 @@
-import {initializeBoard, nQueens} from "./dames";
+import {initializeBoard, nQueens, verifDamier} from "./dames";
 
 describe('nQueens', () => {
     it('retourne un tableau vide, si n = 0', () => {
@@ -16,5 +16,33 @@ describe('nQueens', () => {
             expect(board).toEqual(expectedBoard);
         }
     );
+    it.each([
+        [
+            4,
+            [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            2, 2, true
+        ],
+        [
+            4,
+            [
+                ["O", "O", "O", "O"],
+                ["O", "#", "O", "O"],
+                ["O", "O", "#", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            2, 2, false
+        ]
+    ])(
+        "Vérifie si une reine peut être placée sur une case vide pour un échiquier de taille %i",
+        (_n, board, row, col, expected) => {
+            expect(verifDamier(board, row, col, _n)).toBe(expected);
+        }
+    );
+
 
 })

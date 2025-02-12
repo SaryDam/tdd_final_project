@@ -9,3 +9,7 @@ export function initializeBoard(n: number): string[][] {
     }
     return board;
 }
+
+export function verifDamier(board: string[][], row: number, col: number, n: number): boolean {
+    return board[row][col] === "O";
+}
