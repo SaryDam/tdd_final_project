@@ -11,5 +11,11 @@ export function initializeBoard(n: number): string[][] {
 }
 
 export function verifDamier(board: string[][], row: number, col: number, n: number): boolean {
-    return board[row][col] === "O";
+    if (board[row][col] !== "O") return false;
+
+    for (let j = 0; j < n; j++) {
+        if (j !== col && board[row][j] === "#") return false;
+    }
+
+    return true;
 }
