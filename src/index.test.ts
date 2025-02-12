@@ -57,6 +57,75 @@ describe('nQueens', () => {
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
             ],
+            ligne: -1,
+            colonne: 2,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 4,
+            colonne: 1,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 2,
+            colonne: -1,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 2,
+            colonne: 4,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 1,
+            colonne: 1,
+            attendu: true,
+        },
+    ])(
+        'Vérifie que la reine ne peut pas être placée en dehors du tableau (échiquier de taille $taille)',
+        ({ taille, plateauDeJeu, ligne, colonne, attendu }) => {
+            expect(verifDamier(plateauDeJeu, ligne, colonne, taille)).toBe(attendu);
+        }
+    );
+
+
+    it.each([
+        {
+            taille: 4,
+            plateauDeJeu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
             ligne: 2,
             colonne: 2,
             attendu: true,

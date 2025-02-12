@@ -11,14 +11,18 @@ export function initializeBoard(n: number): string[][] {
 }
 
 export function verifDamier(board: string[][], row: number, col: number, n: number): boolean {
-    if (board[row][col] !== "O") return false; // La case doit être vide
+    if (row < 0 || row >= n || col < 0 || col >= n) {
+        return false;
+    }
+
+    if (board[row][col] !== "O") return false;
 
     for (let j = 0; j < n; j++) {
-        if (j !== col && board[row][j] === "#") return false; // Il ne doit pas y avoir de reine sur la même ligne
+        if (j !== col && board[row][j] === "#") return false;
     }
 
     for (let i = 0; i < n; i++) {
-        if (i !== row && board[i][col] === "#") return false; // Il ne doit pas y avoir de reine sur la même colonne
+        if (i !== row && board[i][col] === "#") return false;
     }
 
     for (let i = 0; i < n; i++) {
