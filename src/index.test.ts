@@ -17,79 +17,140 @@ describe('nQueens', () => {
         }
     );
     it.each([
-        [
-            4,
-            [
+        {
+            taille: 4,
+            plateauDeJeu: [
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
             ],
-            2, 2, true
-        ],
-        [
-            4,
-            [
+            ligne: 2,
+            colonne: 2,
+            attendu: true,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
                 ["O", "O", "O", "O"],
                 ["O", "#", "O", "O"],
                 ["O", "O", "#", "O"],
                 ["O", "O", "O", "O"],
             ],
-            2, 2, false
-        ]
+            ligne: 2,
+            colonne: 2,
+            attendu: false,
+        },
     ])(
-        "Vérifie si une reine peut être placée sur une case vide pour un échiquier de taille %i",
-        (_n, board, row, col, expected) => {
-            expect(verifDamier(board, row, col, _n)).toBe(expected);
+        "Vérifie si une reine peut être placée sur une case vide pour un échiquier de taille $taille",
+        ({ taille, plateauDeJeu, ligne, colonne, attendu }) => {
+            expect(verifDamier(plateauDeJeu, ligne, colonne, taille)).toBe(attendu);
         }
     );
+
     it.each([
-        [
-            4,
-            [
+        {
+            taille: 4,
+            plateauDeJeu: [
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
             ],
-            2, 2, true
-        ],
-        [
-            4,
-            [
+            ligne: 2,
+            colonne: 2,
+            attendu: true,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
                 ["O", "O", "O", "O"],
                 ["O", "#", "O", "O"],
                 ["#", "O", "O", "O"],
                 ["O", "O", "O", "O"],
             ],
-            2, 2, false
-        ],
-        [
-            4,
-            [
+            ligne: 2,
+            colonne: 2,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
                 ["O", "O", "#", "O"],
                 ["O", "O", "O", "O"],
             ],
-            2, 1, false
-        ],
-        [
-            4,
-            [
+            ligne: 2,
+            colonne: 1,
+            attendu: false,
+        },
+        {
+            taille: 4,
+            plateauDeJeu: [
                 ["O", "O", "O", "O"],
                 ["O", "O", "O", "O"],
                 ["#", "O", "0", "O"],
                 ["O", "O", "O", "O"],
             ],
-            2, 3, false
-        ]
+            ligne: 2,
+            colonne: 3,
+            attendu: false,
+        },
     ])(
-        "Vérifie si une reine peut être placée en (%i, %i) sur un échiquier de taille %i",
-        (_n, board, row, col, expected) => {
-            expect(verifDamier(board, row, col, _n)).toBe(expected);
+        "Vérifie si une reine peut être placée en ($ligne, $colonne) sur un échiquier de taille $taille",
+        ({ taille, plateauDeJeu, ligne, colonne, attendu }) => {
+            expect(verifDamier(plateauDeJeu, ligne, colonne, taille)).toBe(attendu);
         }
     );
+
+    it.each([
+        {
+            plateauDeJeuAttendu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 3,
+            colonne: 2,
+            taille: 4,
+            attendu: true,
+        },
+        {
+            plateauDeJeuAttendu: [
+                ["O", "O", "O", "O"],
+                ["O", "#", "O", "O"],
+                ["#", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 1,
+            colonne: 3,
+            taille: 4,
+            attendu: false,
+        },
+        {
+            plateauDeJeuAttendu: [
+                ["O", "O", "O", "O"],
+                ["O", "O", "O", "O"],
+                ["#", "O", "0", "O"],
+                ["O", "O", "O", "O"],
+            ],
+            ligne: 1,
+            colonne: 4,
+            taille: 4,
+            attendu: false,
+        },
+    ])(
+        'quand je place une reine à la position ($ligne,$colonne) sur un échiquier de taille $taille, alors la fonction renvoie $attendu.',
+        ({ plateauDeJeuAttendu, ligne, colonne, taille, attendu }) => {
+            const result = verifDamier(plateauDeJeuAttendu, ligne, colonne, taille);
+
+            expect(result).toBe(attendu);
+        },
+    );
+
+
 
 
 })

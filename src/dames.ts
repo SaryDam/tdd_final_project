@@ -17,5 +17,9 @@ export function verifDamier(board: string[][], row: number, col: number, n: numb
         if (j !== col && board[row][j] === "#") return false;
     }
 
+    for (let i = 0; i < n; i++) {
+        if (i !== row && board[i][col] === "#") return false;
+    }
+
     return true;
 }
